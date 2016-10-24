@@ -1,18 +1,43 @@
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth(); //January is 0!
+var year = today.getFullYear();
+
+
 $( document ).ready(function() {
-	$("h1").append(monthToString(mm) + " " + year);
+	makeCalendar();
 	$("#next").click(function(){
 		nextMonth();
+		makeCalendar();
 	});
 	$("#prev").click(function(){
 		prevMonth();
+		makeCalendar();
 	});
-	addRow();
 });
-
+function makeCalendar(){
+	$("h1").html(monthToString(mm) + " " + year);
+	table = document.getElementById("myTable");
+	for(i = table.rows.length-1; i > 0; i--){
+		table.deleteRow(i);
+	}
+	
+	currentMonth = new Month(year,mm);
+	weeks = currentMonth.getWeeks();
+	currentWeek = new Week(currentMonth.getDateObject(1) );
+	addRow(currentWeek);
+	
+	while(!currentWeek.contains(currentMonth.nextMonth().getDateObject(0) )) {
+		currentWeek = currentWeek.nextWeek();
+		addRow(currentWeek);
+	}
+	
+}
 
 function nextMonth(){
 	if(mm === 11){
 		today = new Date(parseInt(year) +1,0,1);
+		
 	}
 	else{
 		today = new Date(year, parseInt(mm) +1,1);
@@ -20,7 +45,7 @@ function nextMonth(){
 	dd = today.getDate();
 	mm = today.getMonth(); 
 	year = today.getFullYear();
-	$("h1").html(monthToString(mm) + " " + year);
+	//$("h1").html(monthToString(mm) + " " + year);
 }
 function prevMonth(){
 	if(mm === 0){
@@ -32,24 +57,22 @@ function prevMonth(){
 	dd = today.getDate();
 	mm = today.getMonth(); 
 	year = today.getFullYear();
-	$("h1").html(monthToString(mm) + " " + year);
+	//$("h1").html(monthToString(mm) + " " + year);
 }
 
 
-function addRow(){
+function addRow(week){
+	var dates = week.getDates();
+	
 	$("tr").last().after("<tr>");
 	for(i = 0; i < 7; i++){
-		$("tr").last().append("<td></td>");
+		$("tr").last().append("<td>"+ dates[i].getDate() + "</td>");
 	}
 	$("td").last().after("</tr>");
 	
 }
 
 // Code to get value of today from: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth(); //January is 0!
-var year = today.getFullYear();
 
 //var tomorrow = today.deltaDays(1);
 //alert(today);
