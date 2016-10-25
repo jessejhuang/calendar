@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <html>
-     <meta charset="UTF-8"> 
+     
 <head>
+    <meta charset="UTF-8"> 
     <title>Calendar</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src=helper_functions.js></script>
@@ -13,11 +14,12 @@
 </head>
 
 <body>
-<h1></h1>
+<h1>month year</h1>
 <h5>
     <button id= "prev">Previous Month</button>
     <button id="next">Next Month</button>
 </h5>
+
 <table id = myTable style="width:90%">
 
     <tr>
@@ -32,6 +34,9 @@
   
 </table>
 
+<form action= "login.php">
+    <input type= "submit" name = "exit" value= "Logout"/>
+</form>
 
 </body>
 </html>

@@ -3,7 +3,7 @@ var dd = today.getDate();
 var mm = today.getMonth(); //January is 0!
 var year = today.getFullYear();
 
-
+var $ = jQuery;
 $( document ).ready(function() {
 	makeCalendar();
 	$("#next").click(function(){
@@ -17,16 +17,17 @@ $( document ).ready(function() {
 });
 function makeCalendar(){
 	$("h1").html(monthToString(mm) + " " + year);
-	table = document.getElementById("myTable");
-	for(i = table.rows.length-1; i > 0; i--){
+	var table = document.getElementById("myTable");
+	
+	//Clears each month 
+	for(var i = table.rows.length-1; i > 0; i--){
 		table.deleteRow(i);
 	}
 	
-	currentMonth = new Month(year,mm);
-	weeks = currentMonth.getWeeks();
-	currentWeek = new Week(currentMonth.getDateObject(1) );
-	addRow(currentWeek);
+	var currentMonth = new Month(year,mm);
+	var currentWeek = new Week(currentMonth.getDateObject(1) );
 	
+	addRow(currentWeek);
 	while(!currentWeek.contains(currentMonth.nextMonth().getDateObject(0) )) {
 		currentWeek = currentWeek.nextWeek();
 		addRow(currentWeek);
@@ -63,10 +64,16 @@ function prevMonth(){
 
 function addRow(week){
 	var dates = week.getDates();
-	
+
 	$("tr").last().after("<tr>");
-	for(i = 0; i < 7; i++){
-		$("tr").last().append("<td>"+ dates[i].getDate() + "</td>");
+	for(var i = 0; i < 7; i++){
+	
+		if(dates[i].getMonth() == mm ){
+				$("tr").last().append("<td><b>" + dates[i].getDate() + "</b></td>");
+		}
+		else{
+			$("tr").last().append("<td>" + dates[i].getDate() + "</td>");
+		}
 	}
 	$("td").last().after("</tr>");
 	
