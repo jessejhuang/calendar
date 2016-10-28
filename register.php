@@ -1,75 +1,57 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title> Create an Account</title>
-		
-	</head>
-	<body>
-		<form action = # method = "POST">
-		<label> Choose a Username: 
-		<input type = "text" name = "proposed"/> </label>
-		<br>
-		
-		<label> Email address:
-		<input type= "text" name= "email"/> </label>
-		<br>
-		<label>
-		Choose a password: 
-		<input type = "text" name = "password"/> </label>
-		<br>
-		<label>
-		Confirm:
-		<input type = "text" name = "confirm"/> </label>
-		<br>
+<?php
+	require "phpConnect.php";
 	
-		<input type = "submit" value= "Create" name = "Create"/>
+		$pass = (string)$_POST["password"];
+		$new_user = (string)$_POST["new_user"];
+		$email = (string)$_POST["email"];
 		
-		</form>
-		<div> 
-		
-		
-		<?php
-		require "phpConnect.php";
-		
-		if(isset($_POST["proposed"]) and isset($_POST["password"]) and
-		isset($_POST["confirm"]) and isset($_POST["email"]) ){
-			
-			$pass = (string)$_POST["password"];
-			$conf = (string)$_POST["confirm"];
-			$new_user = (string)$_POST["proposed"];
-			$email = (string)$_POST["email"];
-			
-			printf("All fields recieved");
-			filter_var($email);
-			filter($pass);
-			filter($conf);
-			filter($new_user);
-			if($pass !== $conf){
-				printf("Your passwords do not match");
+		$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+		$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+		//echo "<script type='text/javascript'>alert('$email');</script>";
+		filter($pass);
+		filter($new_user);
+
+			$crypt = crypt($pass,"CRYPT_SHA_256");
+			//Check username if proposed password has been taken
+			$add_user = $mysqli->prepare("INSERT INTO Users (username,password,email_address)
+								VALUES (?,?,?)");
+			if(!$add_user){
+				printf("Query prep failed: %s\n",$mysqli->error);
+				exit;
 			}
-			else{
-				$crypt = crypt($pass,"CRYPT_SHA_256");
-				//Check username if proposed password has been taken
-				$add_user = $mysqli->prepare("INSERT INTO Users (username,password,email_address)
-									VALUES (?,?,?)");
-				if(!$add_user){
-					printf("Query prep failed: %s\n",$mysqli->error);
-					exit;
-				}
-				$add_user -> bind_param('sss',$new_user,$crypt,$email);
-				$add_user -> execute();
-				$add_user-> close();
-				header("Location: login.php");
-			}
+			$add_user -> bind_param('sss',$new_user,$crypt,$email);
+			$add_user -> execute();
+			$add_user-> close();
+		
+		//Now see if registered info is same as new info inserted into database
+		$search = $mysqli->prepare("SELECT username,password FROM Users
+					WHERE username = \"" . $new_user."\" && password = \"" . $crypt . "\"");
+		if(!$search){
+			printf("Query Prep Failed %s\n", $mysqli-> error);
+			exit;
 		}
-		else{
-		echo "<p>Please fill in all the required fields above</p>";	
+		$search -> execute();
+		$search -> bind_result($user_match,$pass_match);
+		$search -> fetch();
+		$search -> close();
+		
+		if($user_match != null){// Successful insertion
+			session_start();
+			$_SESSION['username'] = $new_user;
+			$_SESSION['token'] = substr(md5(rand()), 0, 10);
+			echo json_encode(array(
+				"success" => true,
+				"username" => $new_user
+			));
+			exit;
+		}else{
+			echo json_encode(array(
+				"success" => false,
+				"message" => "This Username has already been taken."
+			));
+			exit;
 		}
-	?>
-	</div>
-		<form action = "login.php" >
-		<input type= "submit" value= "Back" />
-		</form>
-	</body>
 	
-</html>
+
+?>
+

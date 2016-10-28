@@ -8,12 +8,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src=helper_functions.js></script>
     <script src=CalendarMath.js></script>
-    
+    <script src="ajax_login.js"></script>
+    <script src = "register_ajax.js"></script>
     <link rel="stylesheet" type="text/css" href="aesthetics.css">
     
 </head>
 
 <body>
+<div id= "logging-in">
+    Login: 
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="login_btn">Log In</button>  
+</div>
+
+<div id= "register">
+    <br> New to this Calendar?<br> Register:     
+    <input type = "text" id= "prop_user" placeholder= "Username"/>
+    <input type= "text" id= "prop_pass" placeholder= "Password"/>
+    <input type= "text" id= "prop_email" placeholder= "Email Address"/>
+    <button id= "register_btn">Register</button>
+</div>
+
+
 <h1>month year</h1>
 <h5>
     <button id= "prev">Previous Month</button>

@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = new mysqli('localhost', 'phpUser','phpPass','NewsSite');
+$mysqli = new mysqli('localhost', 'phpUser','phpPass','Calendar');
 
 if($mysqli->connect_errno){
 	printf("Connection Failed :%s\n",$mysqli->connect_error);
