@@ -1,12 +1,15 @@
 <?php
 
-
-echo json_encode(array(
+if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) ){
+	session_start();
+	session_unset();
+	session_destroy();
+	echo json_encode(array(
 	"success" => true
-));
-session_start();
-session_unset();
-session_destroy();
-exit;
+	));
+	exit;
+}
+
+
 
 ?>
