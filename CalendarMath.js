@@ -5,7 +5,23 @@ var year = today.getFullYear();
 
 var $ = jQuery;
 $( document ).ready(function() {
+	loadMonthView();
+	
+	$("#showMonth").click(function(){
+		$("#placeholder").remove();
+		loadMonthView();
+	});
+	$("#showWeek").click(function(){
+		$("#placeholder").remove();
+		loadWeekView();
+	});
+	//loadWeekView();
+	
+});
+function loadMonthView(){
 	makeCalendar();
+	$("#next").html("Next Month");
+	$("#prev").html("Previous Month");
 	$("#next").click(function(){
 		nextMonth();
 		makeCalendar();
@@ -14,7 +30,21 @@ $( document ).ready(function() {
 		prevMonth();
 		makeCalendar();
 	});
-});
+}
+function loadWeekView(){
+	weekView(today);
+	$("#next").html("Next Week");
+	$("#prev").html("Previous Week");
+	$("#next").click(function(){
+		nextWeek();
+		weekView(today);
+	});
+	$("#prev").click(function(){
+		prevWeek();
+		weekView(today);
+	});
+}
+
 function makeCalendar(){
 	$("h1").html(monthToString(mm) + " " + year);
 	var table = document.getElementById("myTable");
@@ -34,6 +64,42 @@ function makeCalendar(){
 	}
 	
 }
+function weekView(currentDate){
+	
+	var weekShown = new Week(currentDate);
+	var weekDates = weekShown.getDates();
+	$("h1").html( dateToString(weekDates[0]) + "-" + dateToString(weekDates[6]) );
+	var table = document.getElementById("myTable");
+	for(var i = table.rows.length-1; i > 0; i--){
+		table.deleteRow(i);
+	}
+	$("tr").first().prepend("<th id = \"placeholder\"></th>");
+	addRow(weekShown);
+	$("tr").last().prepend("<td>Time</td>");
+	addTimes(currentDate);
+	
+}
+function addTimes(date){
+	date.setHours(0,0);
+	var weekTimes = new Week(date);
+	var weekTimeDates = weekTimes.getDates();
+	for(var i = 0; i < 48; i ++){
+		var min = date.getMinutes();
+		if(min < 10){
+			min = "0"+ min;
+		}
+		$("tr").last().after("<tr>");
+		$("tr").last().append("<td>"+ date.getHours()+":"+min+ "</td>" );
+
+		for(var j = 0; j < 7; j++){
+			weekTimeDates[j].setHours(date.getHours(),date.getMinutes() );
+			$("tr").last().append("<td id= \""+ dateAndTimeToString(weekTimeDates[j]) +"\"></td>");
+		}
+		$("tr").last().after("</tr>");
+		date.setHours(date.getHours(), (parseInt(date.getMinutes()) + 30)  );
+	}
+	
+}
 
 function nextMonth(){
 	if(mm === 11){
@@ -46,7 +112,6 @@ function nextMonth(){
 	dd = today.getDate();
 	mm = today.getMonth(); 
 	year = today.getFullYear();
-	//$("h1").html(monthToString(mm) + " " + year);
 }
 function prevMonth(){
 	if(mm === 0){
@@ -60,6 +125,14 @@ function prevMonth(){
 	year = today.getFullYear();
 	//$("h1").html(monthToString(mm) + " " + year);
 }
+function nextWeek(){
+	today = today.deltaDays(7);
+	$("#placeholder").remove();
+}
+function prevWeek(){
+	today = today.deltaDays(-7);
+	$("#placeholder").remove();
+}
 
 
 function addRow(week){
@@ -69,7 +142,7 @@ function addRow(week){
 	for(var i = 0; i < 7; i++){
 	
 		if(dates[i].getMonth() == mm ){
-				$("tr").last().append("<td><b>" + dates[i].getDate() + "</b></td>");
+				$("tr").last().append("<td id = \"" + dateToString(dates[i])+"\"><b>" + dates[i].getDate() + "</b></td>");
 		}
 		else{
 			$("tr").last().append("<td>" + dates[i].getDate() + "</td>");
@@ -79,13 +152,16 @@ function addRow(week){
 	
 }
 
-// Code to get value of today from: http://stackoverflow.com/questions/1531093/how-to-get-current-date-in-javascript
+function dateToString(date){
+	var ans = (parseInt(date.getMonth()) + 1) + "/" + date.getDate()  + "/"+ date.getFullYear();
+	return ans;
+}
 
-//var tomorrow = today.deltaDays(1);
-//alert(today);
-
-//alert(tomorrow);
-	
+//Used to assign cell IDs, should be useful for putting events into calendar according to time
+function dateAndTimeToString(date){
+	var ans = date.getHours()+":"+date.getMinutes()+ " " + (parseInt(date.getMonth()) + 1) + "/" + date.getDate()  + "/"+ date.getFullYear();
+	return ans;
+}
 function monthToString(mm){
 	
 	switch(parseInt(mm)+1){
