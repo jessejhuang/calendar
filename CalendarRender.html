@@ -41,6 +41,42 @@
     <button id="next">Next Month</button>
 </h5>
 
+<form method="GET" action="CalendarRender.html" data-ajax="true"
+<div id="addEvent">
+<input type = "text" id="title" required> 
+<input type = "text" id="date" required> 
+<input type="text" id="startTime" required>
+<input type="text" id="endTime" required>
+<div class = "type"
+  <label for="home">Home</label>
+  <input type="radio" name="type" id="home" value="home"><br>
+  <label for="work">Work</label>
+  <input type="radio" name="type" id="work" value="work"><br>
+  <label for="other">Other</label>
+  <input type="radio" name="type" id="other" value="other"><br><br>
+</div>
+<button type="button" id="buttonAddEvent">Add Event</button>
+</div>
+</form>
+
+<form method="GET" action="CalendarRender.html" data-ajax="true">
+<div id= "deleteEvent"
+    <button type="button" id="buttonDeleteEvent">Delete This Event</button> 
+</div>
+</form>
+
+
+    
+
+
+
+
+</div>
+
+
+
+
+</h6>
 <table id = myTable style="width:90%">
 
     <tr>
