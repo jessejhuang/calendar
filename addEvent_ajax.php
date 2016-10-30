@@ -1,7 +1,7 @@
 <?php
 require "phpConnect.php";
 ini_set("session.cookie_httponly", 1); 
-session_start()
+session_start();
 
 checkUserConsistency();
 
@@ -22,23 +22,16 @@ if(!$stmt){
 		"success" => false,
 		"message" => $mysqli->error
 		));
+	exit;
 }
 
 $stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 
 $stmt->execute();
-
-if(!$stmt) {
-	echo json_encode(array(
-		"success" => false,
-		"message" => "Executing the Query has Failed"
-		));
-	exit;
-}
 $stmt->close();
 
 
-$date = $dateMonth "/" $dateDay "/" $dateYear;
+$date = $dateMonth. "/" .$dateDay. "/". $dateYear;
 
 echo json_encode(array(
 	"success" => true,
