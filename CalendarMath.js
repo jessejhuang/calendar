@@ -2,7 +2,7 @@ var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth(); //January is 0!
 var year = today.getFullYear();
-
+var user = ""; //Initially no one is logged in
 var $ = jQuery;
 $( document ).ready(function() {
 	loadMonthView();
