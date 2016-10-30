@@ -7,6 +7,7 @@ checkUserConsistency();
 
 $user = htmlentities($_SESSION['username']);
 $title = htmlentities($_POST['title']);
+$description = htmlentities($_POST['description']);
 $dateDay = htmlentities($_POST['dateDay']);
 $dateMonth =htmlentities($_POST['dateMonth']);
 $dateYear = htmlentities($_POST['dateYear']);
