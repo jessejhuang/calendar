@@ -15,6 +15,6 @@ $("#myTable td").click(function()
 	 $(this).toggleClass('selected');
      selectedDate = $(this); 
      alert(selectedDate.attr('id'));
-	 $("h4").html("<button id = \"createEvent\">Create Event</button>");
+	// $("h4").html("<button id = \"createEvent\">Create Event</button>");
     });
 }
