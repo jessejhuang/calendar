@@ -26,20 +26,34 @@ function loginAjax(event){
 
 function logoutAjax(event){
 	var xmlHttp = new XMLHttpRequest();
-	alert("foobarbazz");
-	xmlHttp.open("POST", "login_ajax.php",true);
+	//alert("foobarbazz");
+	xmlHttp.open("POST", "logout.php",true);
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
-			alert("Foo");
-			makeCalendar();
-			
+			alert("You've been successfully logged out.");
+			$("#logging-in").html(
+									"Login:"+ 
+									"<input type=\"text\" id=\"username\" placeholder=\"Username\" />"+
+									"<input type=\"password\" id=\"password\" placeholder=\"Password\" />"+
+									"<button id=\"login_btn\">Log In</button>"  
+									);
+			document.getElementById("login_btn").addEventListener("click", loginAjax, false); 
+									
+			$("#register").html(	"<br> New to this Calendar?<br> Register:"+
+									"<input type = \"text\" id= \"prop_user\" placeholder= \"Username\"/>"+
+									"<input type= \"text\" id= \"prop_pass\" placeholder= \"Password\"/>"+
+									"<input type= \"text\" id= \"prop_email\" placeholder= \"Email Address\"/>"+
+									"<button id= \"register_btn\">Register</button>"
+									);
+			document.getElementById("register_btn").addEventListener("click", registerAjax, false);
 		}else{
 			alert("Logout failed"+jsonData.message);
 		}
 	}, false); // Bind the callback to the load event
-	xmlHttp.send(null); // Send the data
+	var dataString = "signal=foo";
+	xmlHttp.send(dataString); // Send the data
 }
 
 $( document ).ready(function() {
