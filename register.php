@@ -36,7 +36,11 @@
 		$search -> close();
 		
 		if($user_match != null){// Successful insertion
+			
+			ini_set("session.cookie_httponly", 1);
 			session_start();
+			checkUserConsistency();
+			
 			$_SESSION['username'] = $new_user;
 			$_SESSION['token'] = substr(md5(rand()), 0, 10);
 			echo json_encode(array(

@@ -8,6 +8,9 @@ include "phpConnect.php";
 $username = $_POST['username'];
 $password = $_POST['password'];
  
+$username = htmlentities($username);
+$password = htmlentities($password);
+
 $pass = crypt($password,"CRYPT_SHA_256");
 $search = $mysqli->prepare("SELECT username,password FROM Users
 					WHERE username = \"" . $username."\" && password = \"" . $pass . "\"");
@@ -21,7 +24,11 @@ $search = $mysqli->prepare("SELECT username,password FROM Users
 		$search -> close();
 // Check to see if the username
 if( $user_match != null ){
+	
+	ini_set("session.cookie_httponly", 1);
 	session_start();
+	checkUserConsistency();
+	
 	$_SESSION['username'] = $username;
 	$_SESSION['token'] = substr(md5(rand()), 0, 10);
  
