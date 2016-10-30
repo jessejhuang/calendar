@@ -28,6 +28,14 @@ if(!$stmt){
 $stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 
 $stmt->execute();
+
+if(!$stmt) {
+	echo json_encode(array(
+		"success" => false,
+		"message" => "Executing the Query has Failed"
+		));
+	exit;
+}
 $stmt->close();
 
 
