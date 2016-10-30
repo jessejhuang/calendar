@@ -13,7 +13,9 @@ $dateYear = htmlentities($_POST['dateYear'])
 $startTime = htmlentities($_POST['startTime'])
 $eventType = htmlentities($_POST['eventType'])
 
-$stmt = $mysqli->prepare("INSERT INTO 'Events' ('user', 'title', 'description', 'dateDay', 'dateMonth', 'dateYear', 'startTime', 'eventType') VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $mysqli->prepare("DELETE FROM 'Events' WHERE user = ? AND title = ? AND dateDay = ? AND dateMonth = ? AND dateYear = ?");
+
+$stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -21,9 +23,8 @@ if(!$stmt){
 		"success" => false,
 		"message" => $mysqli->error
 		));
+	exit;
 }
-
-$stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 
 $stmt->execute();
 
@@ -36,12 +37,9 @@ if(!$stmt) {
 }
 $stmt->close();
 
-
-$date = $dateMonth "/" $dateDay "/" $dateYear;
-
 echo json_encode(array(
 	"success" => true,
-	"message" => "Adding the Event was Successful"
+	"message" => "Deleting the Event was Successful"
 	));
 exit;
 }
