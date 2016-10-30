@@ -4,7 +4,7 @@ function eventForm(){
 		$("h4").html("");
 	}
 	else{
-		$("h4").html("Add an Event:"+
+		$("h4").html("Add an Event:<br>"+
 					"<input type = \"text\" id=\"title\" placeholder= \"Title\">"+
 					"<br><textarea rows=\"4\" cols=\"30\" id = \"description\" placeholder = \"Description\"></textarea>"+
 					 "<br>Date:"+
@@ -21,13 +21,14 @@ function eventForm(){
 					"<input type=\"radio\" name=\"type\" id=\"other\" value=\"other\"><br><br>"+
 					"<button type=\"button\" id=\"buttonAddEvent\">Add Event</button>"
 					 );
-		//document.getElementById("buttonAddEvent").addEventListener("click", eventAjax, false);
+		document.getElementById("buttonAddEvent").addEventListener("click", eventAjax, false);
 	}
 }
-/*
+
 function eventAjax(event){
-	var title = document.getElementById("prop_user").value; // Get the username from the form
-	var  = document.getElementById("prop_pass").value; // Get the password from the form
+	var title = document.getElementById("title").value; 
+	var description = document.getElementById("description").value;
+	var eventMonth = document.getElementById("description").value;
 	var email = document.getElementById("prop_email").value; 
 	// Make a URL-encoded string for passing POST data:
 	var dataString = "new_user=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password)+ "&email=" + encodeURIComponent(email);
@@ -49,4 +50,3 @@ function eventAjax(event){
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
 }
-*/
