@@ -5,3 +5,8 @@ table, th, td {
 th, td {
     padding: 28px;
 }
+
+.selected {
+    background-color: #6495ED;
+
+}

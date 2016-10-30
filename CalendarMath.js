@@ -20,7 +20,7 @@ $( document ).ready(function() {
 });
 function loadMonthView(){
 	makeCalendar();
-
+	highlightCells();
 	$("#next").html("Next Month");
 	$("#prev").html("Previous Month");
 	$("#next").off();
@@ -28,14 +28,17 @@ function loadMonthView(){
 	$("#next").on("click",function(){
 		nextMonth();
 		makeCalendar();
+		highlightCells();
 	});
 	$("#prev").on("click",function(){
 		prevMonth();
 		makeCalendar();
+		highlightCells();
 	});
 }
 function loadWeekView(){
 	weekView(today);
+	highlightCells();
 	$("#next").html("Next Week");
 	$("#prev").html("Previous Week");
 	$("#next").off();
@@ -43,10 +46,12 @@ function loadWeekView(){
 	$("#next").on("click",function(){
 		nextWeek();
 		weekView(today);
+		highlightCells();
 	});
 	$("#prev").on("click",function(){
 		prevWeek();
 		weekView(today);
+		highlightCells();
 	});
 }
 
@@ -150,7 +155,7 @@ function addRow(week){
 				$("tr").last().append("<td id = \"" + dateToString(dates[i])+"\"><b>" + dates[i].getDate() + "</b></td>");
 		}
 		else{
-			$("tr").last().append("<td>" + dates[i].getDate() + "</td>");
+			$("tr").last().append("<td id = \"" + dateToString(dates[i])+"\">" + dates[i].getDate() + "</td>");
 		}
 	}
 	$("td").last().after("</tr>");
