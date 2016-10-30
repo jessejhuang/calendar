@@ -20,13 +20,16 @@ $( document ).ready(function() {
 });
 function loadMonthView(){
 	makeCalendar();
+
 	$("#next").html("Next Month");
 	$("#prev").html("Previous Month");
-	$("#next").click(function(){
+	$("#next").off();
+	$("#prev").off();
+	$("#next").on("click",function(){
 		nextMonth();
 		makeCalendar();
 	});
-	$("#prev").click(function(){
+	$("#prev").on("click",function(){
 		prevMonth();
 		makeCalendar();
 	});
@@ -35,11 +38,13 @@ function loadWeekView(){
 	weekView(today);
 	$("#next").html("Next Week");
 	$("#prev").html("Previous Week");
-	$("#next").click(function(){
+	$("#next").off();
+	$("#prev").off();
+	$("#next").on("click",function(){
 		nextWeek();
 		weekView(today);
 	});
-	$("#prev").click(function(){
+	$("#prev").on("click",function(){
 		prevWeek();
 		weekView(today);
 	});
