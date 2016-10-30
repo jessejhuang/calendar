@@ -15,8 +15,10 @@ function loginAjax(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("You've been Logged In!");
-			$("#logging-in").html("<b>Welcome, "+ jsonData.username + "</b>");
+			user = jsonData.username; //Initialized at top of CalendarMath
+			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
+			eventForm();
 		}else{
 			alert("You were not logged in.  "+jsonData.message);
 		}
@@ -48,6 +50,8 @@ function logoutAjax(event){
 									"<button id= \"register_btn\">Register</button>"
 									);
 			document.getElementById("register_btn").addEventListener("click", registerAjax, false);
+			user = "";
+			eventForm();
 		}else{
 			alert("Logout failed"+jsonData.message);
 		}

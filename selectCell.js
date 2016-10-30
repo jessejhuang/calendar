@@ -2,7 +2,7 @@ var selectedDate;
 
 $( document ).ready(function() {
 	if(selectedDate === undefined){
-		alert("Foo");
+		//alert("Foo");
 	}
 	
 });
@@ -13,8 +13,10 @@ $("#myTable td").click(function()
     {
      $(this).closest('table').find('td').not(this).removeClass('selected');
 	 $(this).toggleClass('selected');
-     selectedDate = $(this); 
-     alert(selectedDate.attr('id'));
+     selectedDate = $(this);
+	 alert(user);
+    // alert(selectedDate.attr('id'));
 	// $("h4").html("<button id = \"createEvent\">Create Event</button>");
     });
 }
+

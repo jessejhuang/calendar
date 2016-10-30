@@ -15,8 +15,10 @@ function registerAjax(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			//alert("You've been entered into the database!");
-			$("#logging-in").html("<b>Welcome, "+ jsonData.username + "</b>");
+			user = jsonData.username;
+			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
+			eventForm();
 		}else{
 			alert(jsonData.message);
 		}
