@@ -16,10 +16,9 @@ if(!$stmt){
 		));
 	exit;
 }
-
-$stmt->bind_result($title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
-
 $stmt->execute();
+$stmt->bind_result($title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
+$stmt->fetch();
 
 if(!$stmt) {
 	echo json_encode(array(
