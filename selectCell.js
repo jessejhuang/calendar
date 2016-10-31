@@ -48,6 +48,7 @@ function showEventInfo(i,results){
 }
 function displayEventsOnCalendar(results){
 	//Look at time (display to nearest 30 minute interval, rounding down), or look at date, whichever one matches
+	loadMonthView();
 	var length = results.length;
 	$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 	for(var i = 0; i < length; i++){
@@ -75,7 +76,6 @@ function displayEventsOnCalendar(results){
 		
 		var eventDate = new Date(parseInt(displayYear) ,parseInt(displayMonth)-1 ,parseInt(displayDay) ,parseInt(hours) ,parseInt(minutes) );
 		var monthID = dateToString(eventDate);
-		console.log(monthID);
 		var weekID =  dateAndTimeToString(halfHourFloor(eventDate));	
 		if(document.getElementById(monthID) !== null){
 			document.getElementById(monthID).append(results[i][0]);
