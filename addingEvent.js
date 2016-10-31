@@ -28,22 +28,35 @@ function eventForm(){
 function eventAjax(event){
 	var title = document.getElementById("title").value; 
 	var description = document.getElementById("description").value;
-	var eventMonth = document.getElementById("description").value;
-	var email = document.getElementById("prop_email").value; 
+	var dateMonth = document.getElementById("eventMonth").value;
+	var dateDay = document.getElementById("eventDay").value;
+	var dateYear = document.getElementById("eventYear").value;
+	var startTime = document.getElementById("startTime").value;
+	var eventType;
+	if(document.getElementById("home").checked){
+		eventType = "home";
+	}
+	else if(document.getElementById("work").checked){
+		eventType = "work";
+	}
+	else if(document.getElementById("work").checked){
+		eventType = "work";
+	}
 	// Make a URL-encoded string for passing POST data:
-	var dataString = "new_user=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password)+ "&email=" + encodeURIComponent(email);
- 
+	var dataString = "title=" + encodeURIComponent(title) + "&description=" + encodeURIComponent(description);
+	dataString += "&dateMonth ="+ encodeURIComponent(dateMonth) + "&dateDay ="+ encodeURIComponent(dateDay) + "&dateYear ="+ encodeURIComponent(dateYear);
+	dataString += "&startTime ="+ encodeURIComponent(startTime) + "&eventType="+ encodeURIComponent(eventType);
 	var xmlHttp = new XMLHttpRequest(); // Initialize our XMLHttpRequest instance
-	xmlHttp.open("POST", "register.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
+	xmlHttp.open("POST", "addEvent_ajax.php", true); // Starting a POST request (NEVER send passwords as GET variables!!!)
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); // It's easy to forget this line for POST requests
 	xmlHttp.addEventListener("load", function(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
-			//alert("You've been entered into the database!");
-			user = jsonData.username;
-			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
-			$("#register").html("");
-			eventForm();
+			alert(jsonData.message);
+			//user = jsonData.username;
+			//$("#logging-in").html("<b>Welcome, "+ user + "</b>");
+			//$("#register").html("");
+			//eventForm();
 		}else{
 			alert(jsonData.message);
 		}
