@@ -32,7 +32,7 @@ $stmt->execute();
 if(!$stmt) {
 	echo json_encode(array(
 		"success" => false,
-		"message" => "Executing the Query has Failed"
+		"message" => "Executing the Quersy has Failed"
 		));
 	exit;
 }
@@ -46,6 +46,5 @@ echo json_encode(array(
 	"message" => "Adding the Event was Successful"
 	));
 exit;
-}
 
 ?>
