@@ -7,7 +7,7 @@ Module 5 Calendar Lab Jesse Huang Sofia Joison
 Creative Portion
 1.Implemented feature to view one week at a time, with Previous/Next month buttons being replaced by previous/next week buttons
 
-2.Implemented a method that highlights the current day on the calendar, allowing the user to easily see the events that they have upcoming that day
+2.Implemented a method that highlights the current day on the calendar, allowing the user to easily see the events that they have upcoming that day. One can also click on other days to highlight them, with only one other day highlighted at a time.
 
 3.Created a method that displays all the events shown in the calendar on that particular page so that the user can easily see the things they have occuring that month. 
 
