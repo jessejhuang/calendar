@@ -31,7 +31,7 @@ function eventDeleteAjax(event){
 		alert("Please have the date formatted as DD/MM/YYYY");
 	}
 
-	var dataString = "title="+encodeURIComponent(title)+"&dateDay="+encodeURIComponent(dateDay)+"&dateMonth="+encodeURIComponent(dateMonth)+"&dateYear="+encodeURIComponent(dateYear);
+	var dataString = "title="+encodeURIComponent(title)+"&dateYear="+encodeURIComponent(dateYear)+"&dateMonth="+encodeURIComponent(dateMonth)+"&dateDay="+encodeURIComponent(dateDay);
 	var xmlHttp = new XMLHttpRequest(); 
 	xmlHttp.open("POST", "deleteEvent_ajax.php", true); 
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
