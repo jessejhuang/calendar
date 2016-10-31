@@ -4,6 +4,10 @@ function eventDeleteForm() {
 	}
 	else{
 		$("h5").html("Delete an Event:<br>"+
+			 "<br>Event Title:"+
+			"<input type = \"text\" id=\"deleteTitle\" placeholder=\"Event Title\">"+
+			"<br>Event Date:"+
+			"<input type=\"text\" id=\"deleteDate\" placeholder = \"MM/DD/YYYY\">"+
 			"<button type=\"button\" id=\"buttonDeleteEvent\">Delete Event</button>"
 			);
 		document.getElementById("buttonDeleteEvent").addEventListener("click", eventDeleteAjax, false);
