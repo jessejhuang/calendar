@@ -46,6 +46,6 @@ echo json_encode(array(
 	"message" => "Adding the Event was Successful"
 	));
 exit;
-}
+
 
 ?>
