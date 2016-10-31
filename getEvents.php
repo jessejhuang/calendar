@@ -18,7 +18,14 @@ if(!$stmt){
 }
 $stmt->execute();
 $stmt->bind_result($title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
-$stmt->fetch();
+
+//Store values in 2D array
+$results = array();
+while($stmt-> fetch()){
+	$date = $dateMonth. "/" .$dateDay. "/". $dateYear;
+						//0		1			2		3			4
+	$results[] = array($title,$description,$date,$startTime,$eventType);
+}
 
 if(!$stmt) {
 	echo json_encode(array(
@@ -29,14 +36,9 @@ if(!$stmt) {
 }
 $stmt->close();
 
-$date = $dateMonth. "/" .$dateDay. "/". $dateYear;
-
 echo json_encode(array(
 	"success" => true,
-	"title"=> $title,
-	"description" => $description,
-	"eventType" => $eventType,
-	"date" => $date
+	"results"=> $results
 	));
 exit;
 ?>

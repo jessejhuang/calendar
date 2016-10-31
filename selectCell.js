@@ -29,14 +29,42 @@ function getEventsAjax(){
 				if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 					alert("Event info gotten!");
 					console.log(jsonData);
-					//user = jsonData.username;
-					//$("#logging-in").html("<b>Welcome, "+ user + "</b>");
-					//$("#register").html("");
-					//eventForm();
+					displayEventsOnCalendar(jsonData.results);
 				}else{
 					alert(jsonData.message);
 				}
 			}, false);
 			xmlHttp.send(null);
+	}
+}
+function displayEventsOnCalendar(results){
+	//Look at time (display to nearest 30 minute interval, rounding down), or look at date, whichever one matches
+	var length = results.length;
+	for(var i = 0; i < length; i++){
+		//Got to put in calendar now
+		//alert(results[i][3]);
+		var hours = results[i][3].substring(0,2) ;
+		var minutes = results[i][3].substring(3,5);
+		var displayMonth = results[i][2].substring(0,2); 
+		var displayDay = results[i][2].substring(3,5) ;
+		var displayYear = results[i][2].substring(6,10) ;
+		var eventDate = new Date(displayYear,displayMonth,displayDay,hours,minutes);
+		var monthID = "#" + dateToString(eventDate);
+		var weekID = "#" + dateAndTimeToString(halfHourFloor(eventDate));
+		$(monthID).html(results[i][0]);
+		$(weekID).html(results[i][0]);
+		
+		
+	}
+}
+//rounds a date to nearest half hour
+function halfHourFloor(toBeRounded){
+	var ratio = toBeRounded.getMinutes()/ 30.0;
+	if(ratio < 1){
+		return new Date(toBeRounded.getFullYear, toBeRounded.getMonth(),tobeRounded.getDate(),toBeRounded.getHours(),0);
+	//Inspiration from http://stackoverflow.com/questions/37302373/round-ionictimepicker-to-nearest-30-minute-interval#37304619
+	}
+	else{
+		return new Date(toBeRounded.getFullYear, toBeRounded.getMonth(),toBeRounded.getDate(),toBeRounded.getHours(),30);
 	}
 }
