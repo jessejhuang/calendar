@@ -174,7 +174,7 @@ function addRow(week){
 	
 		if(dates[i].getMonth() == mm ){
 			if(dateToString(dates[i]) === dateToString(new Date())){
-				$("tr").last().append("<td id = \"" + dateToString(dates[i])+"\" class = \"selected\"><b>" + dates[i].getDate() + "</b></td>");
+				$("tr").last().append("<td id = \"" + dateToString(dates[i])+"\" class = \"highlight\"><b>" + dates[i].getDate() + "</b></td>");
 			}
 			else{
 				$("tr").last().append("<td id = \"" + dateToString(dates[i])+"\"><b>" + dates[i].getDate() + "</b></td>");
