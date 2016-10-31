@@ -39,6 +39,13 @@ function getEventsAjax(){
 			xmlHttp.send(null);
 	}
 }
+function showEventInfo(i,results){
+	var description = results[i][1];
+	var title = results[i][0];
+	var text = "Event Name:\n"+ title + "\n\n Description:\n"+ description;
+	alert(text);
+	//document.getElementById("buttonAddEvent").addEventListener("click", eventAjax, false);
+}
 function displayEventsOnCalendar(results){
 	//Look at time (display to nearest 30 minute interval, rounding down), or look at date, whichever one matches
 	var length = results.length;
@@ -56,6 +63,7 @@ function displayEventsOnCalendar(results){
 		//document.getElementById("10/31/2016").append(results[i][0]);
 		if(document.getElementById(monthID) !== null){
 			document.getElementById(monthID).append(results[i][0]);
+			document.getElementById(monthID).addEventListener("click", showEventInfo(i,results) );
 		}
 		if (document.getElementById(weekID) !== null){
 			document.getElementById(weekID).append(results[i][0]);
