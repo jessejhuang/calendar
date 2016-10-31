@@ -32,7 +32,7 @@ $stmt->execute();
 if(!$stmt) {
 	echo json_encode(array(
 		"success" => false,
-		"message" => "Executing the Quersy has Failed"
+		"message" => "Executing the Query has Failed"
 		));
 	exit;
 }
