@@ -14,7 +14,7 @@ $dateYear = htmlentities($_POST['dateYear']);
 $startTime = htmlentities($_POST['startTime']);
 $eventType = htmlentities($_POST['eventType']);
 
-$stmt = $mysqli->prepare("INSERT INTO 'Events' ('user', 'title', 'description', 'dateDay', 'dateMonth', 'dateYear', 'startTime', 'eventType') VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $mysqli->prepare("INSERT INTO Events (user, title, description, dateDay, dateMonth, dateYear, startTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -25,7 +25,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('sssiiits', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
+$stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 
 $stmt->execute();
 
