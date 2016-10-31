@@ -18,11 +18,9 @@ function loginAjax(event){
 			user = jsonData.username; //Initialized at top of CalendarMath
 			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
-			alert("foo");
 			eventForm();
 			eventDeleteForm();
 			getEventsAjax();
-			alert("bar");
 			
 		}else{
 			alert("You were not logged in.  "+jsonData.message);
