@@ -4,7 +4,7 @@ function eventDeleteForm() {
 	}
 	else{
 		$("h5").html("Delete an Event:<br>"+
-			 "<br>Event Title:"+
+			"<br>Event Title:"+
 			"<input type = \"text\" id=\"deleteTitle\" placeholder=\"Event Title\">"+
 			"<br>Event Date:"+
 			"<input type=\"text\" id=\"deleteDate\" placeholder = \"MM/DD/YYYY\">"+
@@ -17,14 +17,17 @@ function eventDeleteAjax(event){
 	var title = document.getElementById("deleteTitle").value;
 	var date = document.getElementById("deleteDate").value;
 	var findDateArray = date.split("/");
+	var dateMonth ="";
+	var dateDay = "";
+	var dateYear = "";
 	if(findDateArray.length === 3) {
-		var dateMonth = findDateArray[0];
-		var dateDay = findDateArray[1];
-		var dateYear = findDateArray[2];
+		dateMonth = findDateArray[0];
+		dateDay = findDateArray[1];
+		dateYear = findDateArray[2];
 	}
 	else {
 		document.getElementById("deleteDate").value="";
-		alert(Please have the date formatted as DD/MM/YYYY);
+		alert("Please have the date formatted as DD/MM/YYYY");
 	}
 
 	var dataString = "title="+encodeURIComponent(title)+"&dateDay="+encodeURIComponent(dateDay)+"&dateMonth="+encodeURIComponent(dateMonth)+"&dateYear="+encodeURIComponent(dateYear);
@@ -42,4 +45,3 @@ function eventDeleteAjax(event){
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
 }
-
