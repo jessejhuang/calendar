@@ -53,7 +53,6 @@ function displayEventsOnCalendar(results){
 		var eventDate = new Date(parseInt(displayYear) ,parseInt(displayMonth)-1 ,parseInt(displayDay) ,parseInt(hours) ,parseInt(minutes) );
 		var monthID = dateToString(eventDate);
 		var weekID =  dateAndTimeToString(halfHourFloor(eventDate));
-		alert(weekID);
 		//document.getElementById("10/31/2016").append(results[i][0]);
 		if(document.getElementById(monthID) !== null){
 			document.getElementById(monthID).append(results[i][0]);

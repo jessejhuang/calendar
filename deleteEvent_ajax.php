@@ -14,7 +14,7 @@ $dateYear = htmlentities($_POST['dateYear']);
 $startTime = htmlentities($_POST['startTime']);
 $eventType = htmlentities($_POST['eventType']);
 
-$stmt = $mysqli->prepare("DELETE FROM 'Events' WHERE user = ? AND title = ? AND description = ? AND dateDay = ? AND dateMonth = ? AND dateYear = ?");
+$stmt = $mysqli->prepare("DELETE FROM Events WHERE user = ? AND title = ? AND description = ? AND dateDay = ? AND dateMonth = ? AND dateYear = ?");
 
 $stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 

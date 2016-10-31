@@ -57,6 +57,7 @@ function eventAjax(event){
 			//$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			//$("#register").html("");
 			//eventForm();
+			getEventsAjax();
 		}else{
 			alert(jsonData.message);
 		}
