@@ -19,6 +19,7 @@ function loginAjax(event){
 			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
 			eventForm();
+			getEventsAjax();
 		}else{
 			alert("You were not logged in.  "+jsonData.message);
 		}
@@ -52,6 +53,7 @@ function logoutAjax(event){
 			document.getElementById("register_btn").addEventListener("click", registerAjax, false);
 			user = "";
 			eventForm();
+			
 		}else{
 			alert("Logout failed"+jsonData.message);
 		}
