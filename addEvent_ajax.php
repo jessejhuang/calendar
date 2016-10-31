@@ -24,7 +24,7 @@ if(!$stmt){
 		));
 }
 
-$stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
+$stmt->bind_param('sssiiits', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
 
 $stmt->execute();
 
