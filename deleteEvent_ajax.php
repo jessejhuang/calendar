@@ -1,7 +1,7 @@
 <?php
 require "phpConnect.php";
 ini_set("session.cookie_httponly", 1); 
-session_start()
+session_start();
 
 checkUserConsistency();
 
@@ -43,6 +43,5 @@ echo json_encode(array(
 	"message" => "Deleting the Event was Successful"
 	));
 exit;
-}
 
 ?>
