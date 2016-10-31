@@ -7,16 +7,16 @@ checkUserConsistency();
 
 $user = htmlentities($_SESSION['username']);
 $title = htmlentities($_POST['title']);
-$description = htmlentities($_POST['description']);
+// $description = htmlentities($_POST['description']);
 $dateDay = htmlentities($_POST['dateDay']);
 $dateMonth =htmlentities($_POST['dateMonth']);
 $dateYear = htmlentities($_POST['dateYear']);
-$startTime = htmlentities($_POST['startTime']);
-$eventType = htmlentities($_POST['eventType']);
+// $startTime = htmlentities($_POST['startTime']);
+// $eventType = htmlentities($_POST['eventType']);
 
-$stmt = $mysqli->prepare("DELETE FROM Events WHERE user = ? AND title = ? AND description = ? AND dateDay = ? AND dateMonth = ? AND dateYear = ?");
+$stmt = $mysqli->prepare("DELETE FROM Events WHERE user = ? AND title = ? AND dateDay = ? AND dateMonth = ? AND dateYear = ?");
 
-$stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
+$stmt->bind_param('ssiii', $user, $title, $dateDay, $dateMonth, $dateYear); //$startTime, $eventType);
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
