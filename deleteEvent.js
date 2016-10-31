@@ -25,11 +25,6 @@ function eventDeleteAjax(event){
 		dateMonth = findDateArray[0];
 		dateDay = findDateArray[1];
 		dateYear = findDateArray[2];
-	}
-	else {
-		document.getElementById("deleteDate").value="";
-		alert("Please have the date formatted as DD/MM/YYYY");
-	}
 
 	var dataString = "title="+encodeURIComponent(title)+"&dateYear="+encodeURIComponent(dateYear)+"&dateMonth="+encodeURIComponent(dateMonth)+"&dateDay="+encodeURIComponent(dateDay);
 	var xmlHttp = new XMLHttpRequest(); 
@@ -45,4 +40,9 @@ function eventDeleteAjax(event){
 	}
 	}, false); // Bind the callback to the load event
 	xmlHttp.send(dataString); // Send the data
+	}
+	else {
+		document.getElementById("deleteDate").value="";
+		alert("Please have the date formatted as DD/MM/YYYY");
+	}
 }
