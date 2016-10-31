@@ -67,7 +67,7 @@ function displayEventsOnCalendar(results){
 			displayDay = displayDay.substring(0,1);
 			displayYear = results[i][2].substring(5,9) ;
 		}
-		if(displayMonth.substring(1,2)=== "/" && isplayDay.substring(1,2)=== "/"){
+		if(displayMonth.substring(1,2)=== "/" && displayDay.substring(1,2)=== "/"){
 			displayMonth = displayMonth.substring(0,1);
 			displayDay =results[i][2].substring(2,4) ;
 			displayYear = results[i][2].substring(4,8) ;

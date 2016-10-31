@@ -8,6 +8,8 @@ var token;
 var $ = jQuery;
 
 $( document ).ready(function() {
+	$("h4").html("");
+	$("h5").html("");
 	loadMonthView();
 	
 	$("#showMonth").click(function(){
@@ -18,7 +20,6 @@ $( document ).ready(function() {
 		$("#placeholder").remove();
 		loadWeekView();
 	});
-	//loadWeekView();
 	
 });
 function loadMonthView(){

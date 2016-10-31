@@ -53,10 +53,7 @@ function eventAjax(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert(jsonData.message);
-			//user = jsonData.username;
-			//$("#logging-in").html("<b>Welcome, "+ user + "</b>");
-			//$("#register").html("");
-			//eventForm();
+
 			getEventsAjax();
 		}else{
 			alert(jsonData.message);
