@@ -19,6 +19,7 @@ function loginAjax(event){
 			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
 			eventForm();
+			eventDeleteForm();
 			getEventsAjax();
 		}else{
 			alert("You were not logged in.  "+jsonData.message);
