@@ -42,6 +42,7 @@ function showEventInfo(i,results){
 	var description = results[i][1];
 	var title = results[i][0];
 	var text = "<br>Event Name:<b>"+ title + "</b><br>Time:"+results[i][3].substring(0,5)+"<br>Description:<br>"+ description + "<br>";
+	text = text + "Tag:"+ results[i][4]+ "<br>";
 	$("#eventDisplay").append(text);
 	//document.getElementById("buttonAddEvent").addEventListener("click", eventAjax, false);
 }
