@@ -8,6 +8,7 @@ function eventDeleteForm() {
 			"<input type = \"text\" id=\"deleteTitle\" placeholder=\"Event Title\">"+
 			"<br>Event Date:"+
 			"<input type=\"text\" id=\"deleteDate\" placeholder = \"MM/DD/YYYY\">"+
+			"<br>"+
 			"<button type=\"button\" id=\"buttonDeleteEvent\">Delete Event</button>"
 			);
 		document.getElementById("buttonDeleteEvent").addEventListener("click", eventDeleteAjax, false);
