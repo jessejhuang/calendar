@@ -1,7 +1,6 @@
 <?php
 require "phpConnect.php";
 ini_set("session.cookie_httponly", 1); 
-header("Content-Type: application/json");
 session_start();
 
 checkUserConsistency();
