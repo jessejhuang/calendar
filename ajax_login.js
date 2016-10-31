@@ -16,6 +16,8 @@ function loginAjax(event){
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 			alert("You've been Logged In!");
 			user = jsonData.username; //Initialized at top of CalendarMath
+			token = jsonData.token;
+			console.log(token);
 			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
 			eventForm();

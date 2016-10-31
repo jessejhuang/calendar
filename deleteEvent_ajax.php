@@ -11,6 +11,8 @@ $title = htmlentities($_POST['title']);
 $dateDay = htmlentities($_POST['dateDay']);
 $dateMonth =htmlentities($_POST['dateMonth']);
 $dateYear = htmlentities($_POST['dateYear']);
+$jstoken = htmlentities($_POST['jstoken'] );
+$_SESSION["form-token"]= $jstoken;
 // $startTime = htmlentities($_POST['startTime']);
 // $eventType = htmlentities($_POST['eventType']);
 

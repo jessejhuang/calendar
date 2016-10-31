@@ -34,7 +34,8 @@ if( $user_match != null ){
  
 	echo json_encode(array(
 		"success" => true,
-		"username" => $username
+		"username" => $username,
+		"token"=> $_SESSION['token']
 	));
 	exit;
 }else{

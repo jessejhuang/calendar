@@ -26,7 +26,7 @@ function eventDeleteAjax(event){
 		dateDay = findDateArray[1];
 		dateYear = findDateArray[2];
 
-	var dataString = "title="+encodeURIComponent(title)+"&dateYear="+encodeURIComponent(dateYear)+"&dateMonth="+encodeURIComponent(dateMonth)+"&dateDay="+encodeURIComponent(dateDay);
+	var dataString = "title="+encodeURIComponent(title)+"&dateYear="+encodeURIComponent(dateYear)+"&dateMonth="+encodeURIComponent(dateMonth)+"&dateDay="+encodeURIComponent(dateDay)+"&jsoken="+encodeURIComponent(token);
 	var xmlHttp = new XMLHttpRequest(); 
 	xmlHttp.open("POST", "deleteEvent_ajax.php", true); 
 	xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded"); 
@@ -34,7 +34,6 @@ function eventDeleteAjax(event){
 		var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 		if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
 		alert(jsonData.message);
-
 	}else{
 		alert(jsonData.message);
 	}

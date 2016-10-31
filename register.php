@@ -45,7 +45,8 @@
 			$_SESSION['token'] = substr(md5(rand()), 0, 10);
 			echo json_encode(array(
 				"success" => true,
-				"username" => $new_user
+				"username" => $new_user,
+				"token"=> $_SESSION['token']
 			));
 			exit;
 		}else{
