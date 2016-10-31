@@ -42,13 +42,14 @@ function getEventsAjax(){
 function showEventInfo(i,results){
 	var description = results[i][1];
 	var title = results[i][0];
-	var text = "<br>Event Name:<b>"+ title + "</b><br> Description:<br>"+ description + "<br>";
+	var text = "<br>Event Name:<b>"+ title + "</b><br>Time:"+results[i][3].substring(0,5)+"<br>Description:<br>"+ description + "<br>";
 	$("#eventDisplay").append(text);
 	//document.getElementById("buttonAddEvent").addEventListener("click", eventAjax, false);
 }
 function displayEventsOnCalendar(results){
 	//Look at time (display to nearest 30 minute interval, rounding down), or look at date, whichever one matches
 	var length = results.length;
+	$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 	for(var i = 0; i < length; i++){
 		//Got to put in calendar now
 		//alert(results[i][3]);
@@ -57,10 +58,25 @@ function displayEventsOnCalendar(results){
 		var displayMonth = results[i][2].substring(0,2); 
 		var displayDay = results[i][2].substring(3,5) ;
 		var displayYear = results[i][2].substring(6,10) ;
+		if(displayMonth.substring(1,2)=== "/"){
+			displayMonth = displayMonth.substring(0,1);
+			displayDay =results[i][2].substring(2,4) ;
+			displayYear = results[i][2].substring(5,9) ;
+		}
+		if(displayDay.substring(1,2)=== "/"){
+			displayDay = displayDay.substring(0,1);
+			displayYear = results[i][2].substring(5,9) ;
+		}
+		if(displayMonth.substring(1,2)=== "/" && isplayDay.substring(1,2)=== "/"){
+			displayMonth = displayMonth.substring(0,1);
+			displayDay =results[i][2].substring(2,4) ;
+			displayYear = results[i][2].substring(4,8) ;
+		}
+		
 		var eventDate = new Date(parseInt(displayYear) ,parseInt(displayMonth)-1 ,parseInt(displayDay) ,parseInt(hours) ,parseInt(minutes) );
 		var monthID = dateToString(eventDate);
-		var weekID =  dateAndTimeToString(halfHourFloor(eventDate));
-		//document.getElementById("10/31/2016").append(results[i][0]);
+		console.log(monthID);
+		var weekID =  dateAndTimeToString(halfHourFloor(eventDate));	
 		if(document.getElementById(monthID) !== null){
 			document.getElementById(monthID).append(results[i][0]);
 			document.getElementById(monthID).addEventListener("click", showEventInfo(i,results) ,false);

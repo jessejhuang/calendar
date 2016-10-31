@@ -55,6 +55,9 @@ function logoutAjax(event){
 			document.getElementById("register_btn").addEventListener("click", registerAjax, false);
 			user = "";
 			eventForm();
+			eventDeleteForm();
+			loadMonthView();
+			//$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 			
 		}else{
 			alert("Logout failed"+jsonData.message);
