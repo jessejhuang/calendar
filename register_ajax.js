@@ -19,6 +19,7 @@ function registerAjax(event){
 			$("#logging-in").html("<b>Welcome, "+ user + "</b>");
 			$("#register").html("");
 			eventForm();
+			eventDeleteForm();
 		}else{
 			alert(jsonData.message);
 		}
