@@ -4,6 +4,7 @@ Module 5 Calendar Lab Jesse Huang Sofia Joison
 
 [Link to calendar](http://ec2-54-208-50-249.compute-1.amazonaws.com/~jessehuang/mod5group/CalendarRender.html)
 
+Account information: Username: jesse Password: jesse
 Creative Portion
 1.Implemented feature to view one week at a time, with Previous/Next month buttons being replaced by previous/next week buttons
 
@@ -13,5 +14,4 @@ Creative Portion
 
 4.Created tag functionality so that the user can mark an event as "home", "work", or "other"
 
-5.Created a field so that the user has the ability to enter a description of the event that includes important information such as location, specific items needed for event, etc. 
-
+5.Created a field so that the user has the ability to enter a description of the event that includes important information such as location, specific items needed for event, etc.
