@@ -2,6 +2,7 @@ var selectedDate;
 
 $( document ).ready(function() {
 	if(selectedDate === undefined){
+		
 	}
 	
 });
@@ -27,7 +28,6 @@ function getEventsAjax(){
 			xmlHttp.addEventListener("load", function(event){
 				var jsonData = JSON.parse(event.target.responseText); // parse the JSON into a JavaScript object
 				if(jsonData.success){  // in PHP, this was the "success" key in the associative array; in JavaScript, it's the .success property of jsonData
-					alert("Event info gotten!");
 					console.log(jsonData);
 					displayEventsOnCalendar(jsonData.results);
 				}else{
@@ -48,12 +48,17 @@ function displayEventsOnCalendar(results){
 		var displayMonth = results[i][2].substring(0,2); 
 		var displayDay = results[i][2].substring(3,5) ;
 		var displayYear = results[i][2].substring(6,10) ;
-		var eventDate = new Date(displayYear,displayMonth,displayDay,hours,minutes);
-		var monthID = "#" + dateToString(eventDate);
-		var weekID = "#" + dateAndTimeToString(halfHourFloor(eventDate));
-		$(monthID).html(results[i][0]);
-		$(weekID).html(results[i][0]);
-		
+		var eventDate = new Date(parseInt(displayYear) ,parseInt(displayMonth)-1 ,parseInt(displayDay) ,parseInt(hours) ,parseInt(minutes) );
+		var monthID = dateToString(eventDate);
+		var weekID =  dateAndTimeToString(halfHourFloor(eventDate));
+		alert(weekID);
+		//document.getElementById("10/31/2016").append(results[i][0]);
+		if(document.getElementById(monthID) !== null){
+			document.getElementById(monthID).append(results[i][0]);
+		}
+		if (document.getElementById(weekID) !== null){
+			document.getElementById(weekID).append(results[i][0]);
+		}
 		
 	}
 }
@@ -61,10 +66,10 @@ function displayEventsOnCalendar(results){
 function halfHourFloor(toBeRounded){
 	var ratio = toBeRounded.getMinutes()/ 30.0;
 	if(ratio < 1){
-		return new Date(toBeRounded.getFullYear, toBeRounded.getMonth(),tobeRounded.getDate(),toBeRounded.getHours(),0);
+		return new Date(toBeRounded.getFullYear(), toBeRounded.getMonth(),toBeRounded.getDate(),toBeRounded.getHours(),0);
 	//Inspiration from http://stackoverflow.com/questions/37302373/round-ionictimepicker-to-nearest-30-minute-interval#37304619
 	}
 	else{
-		return new Date(toBeRounded.getFullYear, toBeRounded.getMonth(),toBeRounded.getDate(),toBeRounded.getHours(),30);
+		return new Date(toBeRounded.getFullYear(), toBeRounded.getMonth(),toBeRounded.getDate(),toBeRounded.getHours(),30);
 	}
 }

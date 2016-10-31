@@ -1,5 +1,5 @@
 // ajax_login.js
- 
+
 function loginAjax(event){
 
 	var username = document.getElementById("username").value; // Get the username from the form

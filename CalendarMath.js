@@ -3,6 +3,7 @@ var dd = today.getDate();
 var mm = today.getMonth(); //January is 0!
 var year = today.getFullYear();
 var user = ""; //Initially no one is logged in
+
 var $ = jQuery;
 $( document ).ready(function() {
 	loadMonthView();
@@ -21,6 +22,10 @@ $( document ).ready(function() {
 function loadMonthView(){
 	makeCalendar();
 	highlightCells();
+	if(user!== ""){
+		getEventsAjax();
+		}
+		
 	$("#next").html("Next Month");
 	$("#prev").html("Previous Month");
 	$("#next").off();
@@ -29,16 +34,26 @@ function loadMonthView(){
 		nextMonth();
 		makeCalendar();
 		highlightCells();
+		if(user!== ""){
+			getEventsAjax();
+		}
 	});
 	$("#prev").on("click",function(){
 		prevMonth();
 		makeCalendar();
 		highlightCells();
+		if(user!== ""){
+			getEventsAjax();
+		}
 	});
 }
 function loadWeekView(){
 	weekView(today);
 	highlightCells();
+	if(user!== ""){
+			getEventsAjax();
+		}
+		
 	$("#next").html("Next Week");
 	$("#prev").html("Previous Week");
 	$("#next").off();
@@ -47,11 +62,17 @@ function loadWeekView(){
 		nextWeek();
 		weekView(today);
 		highlightCells();
+		if(user!== ""){
+			getEventsAjax();
+		}
 	});
 	$("#prev").on("click",function(){
 		prevWeek();
 		weekView(today);
 		highlightCells();
+		if(user!== ""){
+			getEventsAjax();
+		}
 	});
 }
 
