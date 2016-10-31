@@ -5,6 +5,7 @@ var year = today.getFullYear();
 var user = ""; //Initially no one is logged in
 
 var $ = jQuery;
+
 $( document ).ready(function() {
 	loadMonthView();
 	
@@ -22,6 +23,7 @@ $( document ).ready(function() {
 function loadMonthView(){
 	makeCalendar();
 	highlightCells();
+	$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 	if(user!== ""){
 		getEventsAjax();
 		}
@@ -34,6 +36,7 @@ function loadMonthView(){
 		nextMonth();
 		makeCalendar();
 		highlightCells();
+		$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 		if(user!== ""){
 			getEventsAjax();
 		}
@@ -42,6 +45,7 @@ function loadMonthView(){
 		prevMonth();
 		makeCalendar();
 		highlightCells();
+		$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 		if(user!== ""){
 			getEventsAjax();
 		}
@@ -50,6 +54,7 @@ function loadMonthView(){
 function loadWeekView(){
 	weekView(today);
 	highlightCells();
+	$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 	if(user!== ""){
 			getEventsAjax();
 		}
@@ -62,6 +67,7 @@ function loadWeekView(){
 		nextWeek();
 		weekView(today);
 		highlightCells();
+		$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 		if(user!== ""){
 			getEventsAjax();
 		}
@@ -70,6 +76,7 @@ function loadWeekView(){
 		prevWeek();
 		weekView(today);
 		highlightCells();
+		$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 		if(user!== ""){
 			getEventsAjax();
 		}

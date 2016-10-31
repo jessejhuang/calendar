@@ -13,3 +13,7 @@ th, td {
 .highlight{
     background-color: #FF7F50;
 }
+#eventDisplay{
+    border: 3px solid #006400;
+    margin: 0;
+}
