@@ -12,9 +12,9 @@ $dateDay = htmlentities($_POST['dateDay']);
 $dateMonth =htmlentities($_POST['dateMonth']);
 $dateYear = htmlentities($_POST['dateYear']);
 $startTime = htmlentities($_POST['startTime']);
-$eventType = htmlentities($_POST['eventType']);
+//$eventType = htmlentities($_POST['eventType']);
 
-$stmt = $mysqli->prepare("INSERT INTO Events (user, title, description, dateDay, dateMonth, dateYear, startTime, eventType) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt = $mysqli->prepare("INSERT INTO Events (user, title, description, dateDay, dateMonth, dateYear, startTime) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 if(!$stmt){
 	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -25,7 +25,7 @@ if(!$stmt){
 	exit;
 }
 
-$stmt->bind_param('sssiiiss', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime, $eventType);
+$stmt->bind_param('sssiiis', $user, $title, $description, $dateDay, $dateMonth, $dateYear, $startTime);
 
 $stmt->execute();
 
