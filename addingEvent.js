@@ -13,12 +13,6 @@ function eventForm(){
 					"<input type = \"text\" id=\"eventYear\" placeholder=\"yyyy\">"+
 					"<br>Time:"+
 					"<input type=\"text\" id=\"startTime\" placeholder = \"hh:mm\">"+
-					"<br><label for=\"home\">Home</label>"+
-					"<input type=\"radio\" name=\"type\" id=\"home\" value=\"home\"><br>"+
-					"<label for=\"work\">Work</label>"+
-					"<input type=\"radio\" name=\"type\" id=\"work\" value=\"work\"><br>"+
-					"<label for=\"other\">Other</label>"+
-					"<input type=\"radio\" name=\"type\" id=\"other\" value=\"other\"><br><br>"+
 					"<button type=\"button\" id=\"buttonAddEvent\">Add Event</button>"
 					 );
 		document.getElementById("buttonAddEvent").addEventListener("click", eventAjax, false);

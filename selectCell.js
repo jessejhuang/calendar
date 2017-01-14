@@ -48,7 +48,7 @@ function showEventInfo(i,results){
 }
 function displayEventsOnCalendar(results){
 	//Look at time (display to nearest 30 minute interval, rounding down), or look at date, whichever one matches
-	loadMonthView();
+	
 	var length = results.length;
 	$("#eventDisplay").html("<b><u>Events Shown:</u></b>");
 	for(var i = 0; i < length; i++){
